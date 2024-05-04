@@ -7,13 +7,22 @@
         mc:Ignorable="d"
         Title="bookSideActivity" Height="700" Width="800">
     <Grid>
-        <Button Content="Add Book" HorizontalAlignment="Left" Margin="451,443,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}">
+        <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,459,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <ListView Margin="39,93,463,93" Background="#FFD6D3A5">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
-            </ListView.View> 
+            </ListView.View>
+            <ListViewItem Content="ListViewItem"/>
         </ListView>
+        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="166" Margin="473,120,0,0" VerticalAlignment="Top" Width="220" Source="/flash.jpeg">
+            <Image.OpacityMask>
+                <ImageBrush Stretch="UniformToFill"/>
+            </Image.OpacityMask>
+        </Image>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="515,0,0,0" VerticalAlignment="Center" Height="38" Width="162" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="515,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="742,219,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

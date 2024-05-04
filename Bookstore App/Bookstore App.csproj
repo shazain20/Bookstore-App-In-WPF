@@ -9,4 +9,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="cup.png" />
+    <None Remove="espresso.jpg" />
+    <None Remove="flash.jpeg" />
+    <None Remove="world.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="cup.png" />
+    <Resource Include="espresso.jpg" />
+    <Resource Include="flash.jpeg" />
+    <Resource Include="world.jpg" />
+  </ItemGroup>
+
 </Project>
