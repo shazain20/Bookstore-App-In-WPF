@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="850">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="294,158,0,0" VerticalAlignment="Top" Height="84" Width="269"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="294,34,0,0" VerticalAlignment="Top" Height="84" Width="269" Grid.Row="1"/>
 
     </Grid>
 </Window>
