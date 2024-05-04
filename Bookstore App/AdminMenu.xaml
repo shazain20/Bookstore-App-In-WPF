@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="AdminMenu" Height="450" Width="800">
-    <Grid>
-        
+        Title="AdminMenu" Height="450" Width="440">
+    <Grid Background="#FF41CA69">
+        <Button x:Name="bookButton" Content="View Books" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" Height="30" Width="172" FontFamily="Candara" FontSize="18" Background="#FF0C39E6" Foreground="#FFF1D0D0"/>
+        <Label Content="Welcome Admin!" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Candara" Foreground="#FFE3D5D5"/>
+        <Button x:Name="customerButton" Content="View Customers" HorizontalAlignment="Center" Margin="0,176,0,0" VerticalAlignment="Top" Height="30" Width="172" FontFamily="Candara" FontSize="18" Background="#FF0B38E8" Foreground="#FFF4DBDB"/>
+        <Button x:Name="bookButton_Copy1" Content="View Orders" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Height="30" Width="172" FontFamily="Candara" FontSize="18" Background="#FF0B38E8" Foreground="#FFF3D7D7"/>
+        <Button x:Name="bookButton_Copy2" Content="Logout" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Height="28" Width="252" FontFamily="Candara" FontSize="18" Background="#FFF40C46" Foreground="#FFEDD1D1"/>
+
     </Grid>
 </Window>
