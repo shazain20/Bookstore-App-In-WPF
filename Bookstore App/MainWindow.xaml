@@ -5,9 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Bookstore" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="294,158,0,0" VerticalAlignment="Top" Height="84" Width="269"/>
-
+        <Grid Margin="0,0,429,0" Background="#FF41CA69">
+            <Label Content="Sign Up For Free!" HorizontalAlignment="Left" Margin="68,10,0,0" VerticalAlignment="Top" Height="55" Width="232" Foreground="White" FontSize="28"/>
+            <Label Content="Name:" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Height="36" Width="97" Foreground="White" FontSize="18"/>
+            <Label Content="Email:" HorizontalAlignment="Left" Margin="35,131,0,0" VerticalAlignment="Top" Height="36" Width="97" Foreground="White" FontSize="18"/>
+            <Label Content="Username:" HorizontalAlignment="Left" Margin="35,181,0,0" VerticalAlignment="Top" Height="36" Width="97" Foreground="White" FontSize="18" RenderTransformOrigin="0.454,1.89"/>
+            <Label Content="Password:" HorizontalAlignment="Left" Margin="35,239,0,0" VerticalAlignment="Top" Height="36" Width="97" Foreground="White" FontSize="18" RenderTransformOrigin="0.454,1.89"/>
+            <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="162,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="26"/>
+            <TextBox x:Name="emailTextBox" HorizontalAlignment="Left" Margin="162,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="26"/>
+            <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Margin="162,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="26"/>
+            <Label Content="Role:" HorizontalAlignment="Left" Margin="35,301,0,0" VerticalAlignment="Top" Height="37" Width="110" Foreground="White" FontSize="18" RenderTransformOrigin="0.454,1.89"/>
+            <Button x:Name="signupButton" Content="Sign Up" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Height="36" Width="160" Background="#FFB53636" Foreground="#FFFBFBFB" BorderBrush="#FFB53636" FontSize="16" Click="signupButton_Click"/>
+            <RadioButton x:Name="adminRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="162,309,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Background="White"/>
+            <RadioButton x:Name="userRadioButton" Content="Customer" HorizontalAlignment="Left" Margin="253,309,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+            <PasswordBox x:Name="passwordPasswordBox" HorizontalAlignment="Left" Margin="161,244,0,0" VerticalAlignment="Top" Width="167" Height="26"/>
+        </Grid>
+        <Label Content="Already Have An Account? Sign In!" HorizontalAlignment="Left" Margin="394,68,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="435,137,0,0" VerticalAlignment="Top" Width="105" FontSize="18"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="435,193,0,0" VerticalAlignment="Top" Width="105" FontSize="18"/>
+        <Label Content="Role:" HorizontalAlignment="Left" Margin="435,250,0,0" VerticalAlignment="Top" Width="105" FontSize="18"/>
+        <RadioButton x:Name="loginAdminRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="567,261,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF020202" Background="White"/>
+        <RadioButton x:Name="loginUserRadioButton" Content="Customer" HorizontalAlignment="Left" Margin="667,261,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF020202"/>
+        <TextBox x:Name="loginUsernameTextBox" HorizontalAlignment="Left" Margin="567,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="26" Background="White"/>
+        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="496,329,0,0" VerticalAlignment="Top" Height="36" Width="160" Background="#FFB53636" Foreground="#FFFBFBFB" BorderBrush="#FFB53636" FontSize="16" Click="loginButton_Click"/>
+        <PasswordBox x:Name="loginPasswordPasswordBox" HorizontalAlignment="Left" Margin="567,197,0,0" VerticalAlignment="Top" Width="167" Height="26"/>
     </Grid>
 </Window>
