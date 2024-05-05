@@ -24,8 +24,21 @@ namespace Bookstore_App
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            // Check if any of the fields are empty
+            if (string.IsNullOrEmpty(titleTextBox.Text) ||
+                string.IsNullOrEmpty(genreTextbox.Text) ||
+                string.IsNullOrEmpty(priceTextbox.Text) ||
+                string.IsNullOrEmpty(quantityTextbox.Text))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return; // Exit the method if any field is empty
+            }
+
+            // Generate a random ID
+            Random rand = new Random();
+            int randomId = rand.Next(10000); // Generate a random number between 0 and 9999
+
             // Get values from the text boxes
-            string bookId = bookIdTextBox.Text;
             string title = titleTextBox.Text;
             string genre = genreTextbox.Text;
             decimal price = Convert.ToDecimal(priceTextbox.Text);
@@ -39,7 +52,7 @@ namespace Bookstore_App
                     connection.Open();
                     string query = "INSERT INTO YourTableName (BookId, Title, Genre, Price, Quantity) VALUES (@BookId, @Title, @Genre, @Price, @Quantity)";
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@BookId", bookId);
+                    command.Parameters.AddWithValue("@BookId", randomId);
                     command.Parameters.AddWithValue("@Title", title);
                     command.Parameters.AddWithValue("@Genre", genre);
                     command.Parameters.AddWithValue("@Price", price);
@@ -54,4 +67,7 @@ namespace Bookstore_App
             }
         }
     }
-}
+
+ }
+
+
