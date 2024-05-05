@@ -45,7 +45,11 @@ namespace Bookstore_App
             }
 
             // Determine the table name based on radio button selection
-            string tableName = isAdminChecked ? "admins" : "customer";
+            string tableName = isAdminChecked ? "admins" : "customers";
+
+            // Generate a random 4-digit integer
+            Random rand = new Random();
+            int randomValue = rand.Next(1000, 9999);
 
             // Check if username already exists
             if (UsernameExists(username, tableName))
@@ -62,8 +66,9 @@ namespace Bookstore_App
                     connection.Open();
 
                     // Prepare SQL statement
-                    string sql = $"INSERT INTO {tableName} (name, email, username, password) " +
-                                 "VALUES (@Name, @Email, @Username, @Password)";
+                    string sql = $"INSERT INTO {tableName} (name, email, username, password, ";
+                    sql += isAdminChecked ? "adminID) " : "customerID) ";
+                    sql += "VALUES (@Name, @Email, @Username, @Password, @ID)";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -72,6 +77,7 @@ namespace Bookstore_App
                         command.Parameters.AddWithValue("@Email", email);
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
+                        command.Parameters.AddWithValue("@ID", randomValue);
 
                         // Execute SQL statement
                         int rowsAffected = command.ExecuteNonQuery();
