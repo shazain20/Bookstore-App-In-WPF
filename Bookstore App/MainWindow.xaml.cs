@@ -11,7 +11,6 @@ namespace Bookstore_App
         public MainWindow()
         {
             InitializeComponent();
-            loginButton.Click += loginButton_Click; // Attach event listener
         }
 
         private void signupButton_Click(object sender, RoutedEventArgs e)
@@ -103,15 +102,15 @@ namespace Bookstore_App
             string username = loginUsernameTextBox.Text;
             string password = loginPasswordPasswordBox.Password;
             bool isAdminChecked = loginAdminRadioButton.IsChecked ?? false;
-            bool isUserChecked = loginUserRadioButton.IsChecked ?? false;
+            bool isCustomerChecked = loginUserRadioButton.IsChecked ?? false;
 
-            if (!isAdminChecked && !isUserChecked)
+            if (!isAdminChecked && !isCustomerChecked)
             {
                 MessageBox.Show("Please select a role.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            string tableName = isAdminChecked ? "admins" : "customer";
+            string tableName = isAdminChecked ? "admins" : "customers";
 
             try
             {
@@ -129,10 +128,20 @@ namespace Bookstore_App
 
                         int count = (int)command.ExecuteScalar();
 
-                        if (count > 0)
+                        if (count > 0 && isAdminChecked)
                         {
                             MessageBox.Show("Login successful!");
-                            // Add code to navigate to the appropriate page or perform other actions after successful login
+
+                            // Open AdminMenu window
+                            AdminMenu adminMenu = new AdminMenu();
+                            adminMenu.Show();
+
+                            // Close MainWindow
+                            this.Close();
+                        }
+                        else if (count > 0 && isCustomerChecked)
+                        {
+                            // Handle the case for regular user login here if needed
                         }
                         else
                         {
@@ -146,6 +155,9 @@ namespace Bookstore_App
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
+
 
         private bool UsernameExists(string username, string tableName)
         {
