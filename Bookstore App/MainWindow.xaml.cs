@@ -6,7 +6,7 @@ namespace Bookstore_App
 {
     public partial class MainWindow : Window
     {
-        private const string ConnectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        private const string ConnectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
 
         public MainWindow()
         {
