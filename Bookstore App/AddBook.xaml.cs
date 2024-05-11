@@ -64,6 +64,18 @@ namespace Bookstore_App
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of the createAdminMenu page
+            bookSideActivity bookSide = new bookSideActivity();
+
+            // Show the bookSideActivity page
+            bookSide.Show();
+
+            // Close the current AddBook window
+            this.Close();
+        }
     }
 
  }

@@ -27,7 +27,6 @@ namespace Bookstore_App
             FetchBookTitles(); // Call method to fetch book titles when the window is initialized
 
         }
-
         private void FetchBookTitles()
         {
             try
@@ -58,7 +57,6 @@ namespace Bookstore_App
                 MessageBox.Show("Error fetching book titles: " + ex.Message);
             }
         }
-
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -72,7 +70,48 @@ namespace Bookstore_App
 
         private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            // Check if an item is selected
+            if (bookListView.SelectedItem != null)
+            {
+                // Get the selected book title
+                string selectedTitle = bookListView.SelectedItem.ToString();
 
+                // Connect to the database and fetch the price of the selected book
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True"))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string query = "SELECT Price FROM books WHERE Title = @Title";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Title", selectedTitle);
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            // Display the price in the priceLabel
+                            priceLabel.Content = "Price: $" + result.ToString();
+                        }
+                        else
+                        {
+                            priceLabel.Content = "Price: N/A";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error fetching book price: " + ex.Message);
+                    }
+                }
+
+                // Display the selected title in the titleLabel
+                nameLabel.Content = "Selected Book Title: " + selectedTitle;
+            }
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AdminMenu adminMenu = new AdminMenu();
+            adminMenu.Show();
+            this.Close();
         }
     }
 }

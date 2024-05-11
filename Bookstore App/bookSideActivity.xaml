@@ -8,7 +8,7 @@
         Title="bookSideActivity" Height="700" Width="800">
     <Grid Margin="0,-3,0,3">
         <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Button_Click"/>
-        <ListView x:Name="bookListView" Margin="42,93,460,93" Background="#FFD6D3A5" SelectionChanged="ListView_SelectionChanged_1">
+        <ListView x:Name="bookListView" Margin="42,93,460,93" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -21,9 +21,10 @@
                 <ImageBrush Stretch="UniformToFill"/>
             </Image.OpacityMask>
         </Image>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="515,0,0,0" VerticalAlignment="Center" Height="38" Width="162" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
-        <Label Content="Price" HorizontalAlignment="Left" Margin="515,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
-        <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,510,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="460,575,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="434,0,0,0" VerticalAlignment="Center" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
+        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="434,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+        <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,507,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="106,610,0,0" VerticalAlignment="Top" Height="32" Width="136" Background="#FF3762E8" FontSize="20" FontFamily="Candara" FontWeight="Bold" Foreground="#FFE8DCDC" Click="Button_Click_1"/>
+        <Button x:Name="delete_Book" Content="Delete Book" HorizontalAlignment="Left" Margin="460,578,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FFF73818" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
     </Grid>
 </Window>

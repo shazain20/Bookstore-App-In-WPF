@@ -27,6 +27,15 @@ namespace Bookstore_App
         {
             bookSideActivity bookActivity = new bookSideActivity();
             bookActivity.Show();
+            this.Close();
+        }
+
+        private void bookButton_Copy2_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+
         }
     }
 }
