@@ -7,11 +7,14 @@
         mc:Ignorable="d"
         Title="UserMenu" Height="450" Width="800">
     <Grid>
-        <Grid Margin="0,0,602,0" Background="#FF7ED253">
-            <Button Content="View Order" HorizontalAlignment="Left" Margin="44,252,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.262,1.054"/>
-            <Button Content="View Cart" HorizontalAlignment="Left" Margin="44,323,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Button Content="Logout" HorizontalAlignment="Left" Margin="44,186,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Grid Margin="0,0,602,0" Background="Green">
+            <StackPanel>
+                <Button Content="View Cart" FontSize="18" Width="200"/>
+                <Button Content="View Orders" FontSize="18" Width="200"/>
+                <Button Content="Logout" FontSize="18" Width="200"/>
+            </StackPanel>
         </Grid>
+
         <ScrollViewer/>
         <Grid Margin="203,0,0,0">
             <Image Margin="40,21,441,299"/>
