@@ -28,5 +28,11 @@ namespace Bookstore_App
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddBook addBook = new AddBook();
+            addBook.Show();
+        }
     }
 }
