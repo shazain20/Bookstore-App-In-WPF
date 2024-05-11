@@ -16,7 +16,7 @@ namespace Bookstore_App
     /// </summary>
     public partial class AddBook : Window
     {
-        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;Encrypt=True;";
+        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True";
         public AddBook()
         {
             InitializeComponent();
