@@ -23,10 +23,10 @@ namespace Bookstore_App
         {
             InitializeComponent();
         }
-
         private void bookButton_Click(object sender, RoutedEventArgs e)
         {
-
+            bookSideActivity bookActivity = new bookSideActivity();
+            bookActivity.Show();
         }
     }
 }

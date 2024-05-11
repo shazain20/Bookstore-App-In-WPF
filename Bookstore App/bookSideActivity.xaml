@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="bookSideActivity" Height="700" Width="800">
     <Grid Margin="0,-3,0,3">
-        <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
-        <ListView Margin="42,93,460,93" Background="#FFD6D3A5">
+        <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Button_Click"/>
+        <ListView x:Name="bookListView" Margin="42,93,460,93" Background="#FFD6D3A5" SelectionChanged="ListView_SelectionChanged_1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

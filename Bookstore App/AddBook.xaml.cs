@@ -16,12 +16,11 @@ namespace Bookstore_App
     /// </summary>
     public partial class AddBook : Window
     {
-        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;Encrypt=True;";
         public AddBook()
         {
             InitializeComponent();
         }
-
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             // Check if any of the fields are empty
@@ -43,20 +42,19 @@ namespace Bookstore_App
             string genre = genreTextbox.Text;
             decimal price = Convert.ToDecimal(priceTextbox.Text);
             int quantity = Convert.ToInt32(quantityTextbox.Text);
-
             // Insert into the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO YourTableName (BookId, Title, Genre, Price, Quantity) VALUES (@BookId, @Title, @Genre, @Price, @Quantity)";
+                    string query = "INSERT INTO books (BookId,Genre,Price,Quantity,Title) VALUES (@BookId,@Genre,@Price,@Quantity,@Title)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@BookId", randomId);
-                    command.Parameters.AddWithValue("@Title", title);
                     command.Parameters.AddWithValue("@Genre", genre);
                     command.Parameters.AddWithValue("@Price", price);
                     command.Parameters.AddWithValue("@Quantity", quantity);
+                    command.Parameters.AddWithValue("@Title", title);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Book added successfully!");
                 }
