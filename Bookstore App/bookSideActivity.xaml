@@ -24,5 +24,6 @@
         <Label Content="Name" HorizontalAlignment="Left" Margin="515,0,0,0" VerticalAlignment="Center" Height="38" Width="162" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
         <Label Content="Price" HorizontalAlignment="Left" Margin="515,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
         <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,510,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="460,575,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
