@@ -1,0 +1,28 @@
+﻿<Window x:Class="Bookstore_App.bookSideActivity"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bookstore_App"
+        mc:Ignorable="d"
+        Title="bookSideActivity" Height="700" Width="800">
+    <Grid Margin="0,-3,0,3">
+        <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <ListView Margin="42,93,460,93" Background="#FFD6D3A5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListViewItem Content="ListViewItem"/>
+        </ListView>
+        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="166" Margin="474,112,0,0" VerticalAlignment="Top" Width="220" Source="/flash.jpeg">
+            <Image.OpacityMask>
+                <ImageBrush Stretch="UniformToFill"/>
+            </Image.OpacityMask>
+        </Image>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="515,0,0,0" VerticalAlignment="Center" Height="38" Width="162" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="515,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+        <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,510,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+    </Grid>
+</Window>
