@@ -24,6 +24,7 @@ namespace Bookstore_App
         public bookSideActivity()
         {
             InitializeComponent();
+            Update_Book.IsEnabled = false;
             FetchBookTitles(); // Call method to fetch book titles when the window is initialized
 
         }
@@ -74,6 +75,7 @@ namespace Bookstore_App
             // Check if an item is selected
             if (bookListView.SelectedItem != null)
             {
+                Update_Book.IsEnabled = true;
                 // Get the selected book title
                 string selectedTitle = bookListView.SelectedItem.ToString();
 
@@ -114,5 +116,59 @@ namespace Bookstore_App
             adminMenu.Show();
             this.Close();
         }
+
+        // Update the Update_Book_Click event handler in the bookSideActivity window
+        private void Update_Book_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if an item is selected
+            if (bookListView.SelectedItem != null)
+            {
+                string selectedTitle = bookListView.SelectedItem.ToString();
+
+                // Create a BookDetails object to store the details of the selected book
+                BookDetails bookdetails = new BookDetails();
+
+                // Connect to the database and fetch the details of the selected book
+                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string query = "SELECT * FROM books WHERE Title = @Title";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Title", selectedTitle);
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            // Populate the BookDetails object with the fetched details
+                            bookdetails.ID = Convert.ToInt32(reader["bookID"]);
+                            bookdetails.Title = reader["Title"].ToString();
+                            bookdetails.Genre = reader["Genre"].ToString();
+                            bookdetails.Price = Convert.ToDecimal(reader["Price"]);
+                            bookdetails.Quantity = Convert.ToInt32(reader["Quantity"]);
+                            bookdetails.Description = reader["Description"].ToString();
+                        }
+
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error fetching book details: " + ex.Message);
+                    }
+                }
+
+                // Pass the BookDetails object to the UpdateBook window
+                UpdateBook updateBook = new UpdateBook(bookdetails);
+                this.Close();
+                updateBook.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a book to update.");
+            }
+        }
+
     }
 }

@@ -35,9 +35,9 @@
         </Image>
 
         <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Center" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
-        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="460,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="460,361,0,0" VerticalAlignment="Top" Height="34" Width="308" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
 
-        <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,507,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,507,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Update_Book_Click"/>
 
         <Button Content="Back" HorizontalAlignment="Left" Margin="118,480,0,0" VerticalAlignment="Top" Height="32" Width="136" Background="#FF3762E8" FontSize="20" FontFamily="Candara" FontWeight="Bold" Foreground="#FFE8DCDC" Click="Button_Click_1"/>
 

@@ -90,7 +90,7 @@ namespace Bookstore_App
             }
 
             Random rand = new Random();
-            int randomId = rand.Next(10000);
+            int randomId = rand.Next(1000,9999);
             string title = titleTextBox.Text;
             string genre = genreTextbox.Text;
             string description = descriptionTextbox.Text;
