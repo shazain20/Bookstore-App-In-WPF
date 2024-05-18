@@ -46,57 +46,102 @@ namespace Bookstore_App
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            // Remove event handlers temporarily
+            priceTextbox.TextChanged -= PriceTextbox_TextChanged;
+            quantityTextbox.TextChanged -= QuantityTextbox_TextChanged;
+
             if (string.IsNullOrEmpty(titleTextBox.Text) ||
-            string.IsNullOrEmpty(genreTextbox.Text) ||
-            string.IsNullOrEmpty(priceTextbox.Text) ||
-            string.IsNullOrEmpty(quantityTextbox.Text) ||
-            string.IsNullOrEmpty(coverImagePath) || 
-            string.IsNullOrEmpty(pdfFilePath))
+                string.IsNullOrEmpty(genreTextbox.Text) ||
+                string.IsNullOrEmpty(descriptionTextbox.Text) ||
+                string.IsNullOrEmpty(priceTextbox.Text) ||
+                string.IsNullOrEmpty(quantityTextbox.Text) ||
+                string.IsNullOrEmpty(coverImagePath) ||
+                string.IsNullOrEmpty(pdfFilePath))
             {
                 MessageBox.Show("Please fill in all fields and choose appropriate files for cover page and PDF of the book.");
+
+                // Reattach event handlers
+                priceTextbox.TextChanged += PriceTextbox_TextChanged;
+                quantityTextbox.TextChanged += QuantityTextbox_TextChanged;
+
                 return;
             }
 
             if (!decimal.TryParse(priceTextbox.Text, out decimal price))
             {
                 MessageBox.Show("Please enter a valid numeric value for price.");
+
+                // Reattach event handlers
+                priceTextbox.TextChanged += PriceTextbox_TextChanged;
+                quantityTextbox.TextChanged += QuantityTextbox_TextChanged;
+
                 return;
             }
 
             if (!int.TryParse(quantityTextbox.Text, out int quantity))
             {
                 MessageBox.Show("Please enter a valid numeric value for quantity.");
+
+                // Reattach event handlers
+                priceTextbox.TextChanged += PriceTextbox_TextChanged;
+                quantityTextbox.TextChanged += QuantityTextbox_TextChanged;
+
                 return;
             }
 
             Random rand = new Random();
-            int randomId = rand.Next(10000);
+            int randomId = rand.Next(1000,9999);
             string title = titleTextBox.Text;
             string genre = genreTextbox.Text;
+            string description = descriptionTextbox.Text;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO books (BookId,Genre,Price,Quantity,Title,imagePath, pdfPath) VALUES (@BookId,@Genre,@Price,@Quantity,@Title,@imagePath, @pdfPath)";
+                    string query = "INSERT INTO books (BookId,Genre,Price,Quantity,Title,description,imagePath,pdfPath) VALUES (@BookId,@Genre,@Price,@Quantity,@Title,@Description,@imagePath,@pdfPath)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@BookId", randomId);
                     command.Parameters.AddWithValue("@Genre", genre);
                     command.Parameters.AddWithValue("@Price", price);
                     command.Parameters.AddWithValue("@Quantity", quantity);
                     command.Parameters.AddWithValue("@Title", title);
+                    command.Parameters.AddWithValue("@Description", description);
                     command.Parameters.AddWithValue("@imagePath", coverImagePath);
                     command.Parameters.AddWithValue("@pdfPath", pdfFilePath);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Book added successfully!");
+
+                    // Clear textboxes
+                    titleTextBox.Text = string.Empty;
+                    genreTextbox.Text = string.Empty;
+                    priceTextbox.Text = string.Empty;
+                    quantityTextbox.Text = string.Empty;
+                    descriptionTextbox.Text = string.Empty;
+
+                    // Make coverButton and pdfButton visible again
+                    coverButton.Visibility = Visibility.Visible;
+                    pdfButton.Visibility = Visibility.Visible;
+                    pdfAddedLabel.Visibility = Visibility.Collapsed;
+                    coverPageAddedLabel.Visibility = Visibility.Collapsed;
+
+                    // Clear image and pdf paths
+                    coverImagePath = string.Empty;
+                    pdfFilePath = string.Empty;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error adding book: " + ex.Message);
                 }
             }
+
+            // Reattach event handlers
+            priceTextbox.TextChanged += PriceTextbox_TextChanged;
+            quantityTextbox.TextChanged += QuantityTextbox_TextChanged;
         }
+
+
 
         private void coverButton_Click(object sender, RoutedEventArgs e)
         {
