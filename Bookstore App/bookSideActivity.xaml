@@ -41,7 +41,7 @@
 
         <Button Content="Back" HorizontalAlignment="Left" Margin="118,480,0,0" VerticalAlignment="Top" Height="32" Width="136" Background="#FF3762E8" FontSize="20" FontFamily="Candara" FontWeight="Bold" Foreground="#FFE8DCDC" Click="Button_Click_1"/>
 
-        <Button x:Name="delete_Book" Content="Delete Book" HorizontalAlignment="Left" Margin="460,578,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FFF73818" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+        <Button x:Name="deleteButton" Content="Delete Book" HorizontalAlignment="Left" Margin="460,578,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FFF73818" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="deleteButton_Click"/>
 
         <Label x:Name="nameLabel_Copy" Content="Books Catalogue" HorizontalAlignment="Left" Margin="275,13,0,0" VerticalAlignment="Top" Height="65" Width="301" FontSize="40" FontFamily="Candara" FontWeight="Bold" Background="#FF7EEACE" Foreground="White"/>
     </Grid>

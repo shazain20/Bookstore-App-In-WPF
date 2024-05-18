@@ -15,19 +15,16 @@ using System.Windows.Shapes;
 
 namespace Bookstore_App
 {
-    /// <summary>
-    /// Interaction logic for bookSideActivity.xaml
-    /// </summary>
     public partial class bookSideActivity : Window
     {
-
         public bookSideActivity()
         {
             InitializeComponent();
             Update_Book.IsEnabled = false;
+            deleteButton.IsEnabled = false;
             FetchBookTitles(); // Call method to fetch book titles when the window is initialized
-
         }
+
         private void FetchBookTitles()
         {
             try
@@ -36,7 +33,7 @@ namespace Bookstore_App
                 using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     connection.Open();
-                    string query = "SELECT title FROM books";
+                    string query = "SELECT Title FROM books";
                     SqlCommand command = new SqlCommand(query, connection);
                     SqlDataReader reader = command.ExecuteReader();
 
@@ -58,11 +55,12 @@ namespace Bookstore_App
                 MessageBox.Show("Error fetching book titles: " + ex.Message);
             }
         }
+
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            // This method can remain empty if it's not needed
         }
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddBook addBook = new AddBook();
@@ -76,6 +74,7 @@ namespace Bookstore_App
             if (bookListView.SelectedItem != null)
             {
                 Update_Book.IsEnabled = true;
+                deleteButton.IsEnabled = true;
                 // Get the selected book title
                 string selectedTitle = bookListView.SelectedItem.ToString();
 
@@ -110,6 +109,7 @@ namespace Bookstore_App
                 nameLabel.Content = "Title:\t" + selectedTitle;
             }
         }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             AdminMenu adminMenu = new AdminMenu();
@@ -117,7 +117,6 @@ namespace Bookstore_App
             this.Close();
         }
 
-        // Update the Update_Book_Click event handler in the bookSideActivity window
         private void Update_Book_Click(object sender, RoutedEventArgs e)
         {
             // Check if an item is selected
@@ -143,7 +142,7 @@ namespace Bookstore_App
                         if (reader.Read())
                         {
                             // Populate the BookDetails object with the fetched details
-                            bookdetails.ID = Convert.ToInt32(reader["bookID"]);
+                            bookdetails.ID = Convert.ToInt32(reader["BookId"]);
                             bookdetails.Title = reader["Title"].ToString();
                             bookdetails.Genre = reader["Genre"].ToString();
                             bookdetails.Price = Convert.ToDecimal(reader["Price"]);
@@ -170,5 +169,47 @@ namespace Bookstore_App
             }
         }
 
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (bookListView.SelectedItem != null)
+            {
+                string selectedTitle = bookListView.SelectedItem.ToString();
+                MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete the book \"{selectedTitle}\" from the catalogue?", "Delete Book", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            string query = "DELETE FROM books WHERE Title = @Title";
+                            SqlCommand command = new SqlCommand(query, connection);
+                            command.Parameters.AddWithValue("@Title", selectedTitle);
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("Book deleted successfully!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error deleting book: " + ex.Message);
+                        }
+                    }
+                }
+
+                // Reopen the bookSideActivity window using Dispatcher to ensure it happens after the current window is closed
+                Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    bookSideActivity newBookSideActivity = new bookSideActivity();
+                    newBookSideActivity.Show();
+                });
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a book to delete.");
+            }
+        }
     }
 }
