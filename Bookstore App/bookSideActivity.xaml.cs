@@ -32,7 +32,7 @@ namespace Bookstore_App
             try
             {
                 // Connect to the database and fetch book titles
-                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     connection.Open();
                     string query = "SELECT title FROM books";
@@ -65,6 +65,7 @@ namespace Bookstore_App
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddBook addBook = new AddBook();
+            this.Close();
             addBook.Show();
         }
 
@@ -77,7 +78,7 @@ namespace Bookstore_App
                 string selectedTitle = bookListView.SelectedItem.ToString();
 
                 // Connect to the database and fetch the price of the selected book
-                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     try
                     {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="bookSideActivity" Height="700" Width="800">
+        Title="bookSideActivity" Height="700" Width="800" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,-3,0,3">
         <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Button_Click"/>
         <ListView x:Name="bookListView" Margin="42,93,460,93" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1">

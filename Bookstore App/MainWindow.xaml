@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="Bookstore" Height="450" Width="800">
+        Title="Bookstore" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Margin="0,0,429,0" Background="#FF41CA69">
             <Label Content="Sign Up For Free!" HorizontalAlignment="Left" Margin="68,10,0,0" VerticalAlignment="Top" Height="55" Width="232" Foreground="White" FontSize="28"/>

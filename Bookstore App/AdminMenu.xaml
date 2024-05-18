@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="AdminMenu" Height="450" Width="440">
+        Title="AdminMenu" Height="450" Width="440" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF41CA69">
         <Button x:Name="bookButton" Content="View Books" HorizontalAlignment="Center" Margin="0,118,0,0" VerticalAlignment="Top" Height="30" Width="172" FontFamily="Candara" FontSize="18" Background="#FF0C39E6" Foreground="#FFF1D0D0" Click="bookButton_Click"/>
         <Label Content="Welcome Admin!" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Candara" Foreground="#FFE3D5D5"/>
