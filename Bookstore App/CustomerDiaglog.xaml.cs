@@ -14,7 +14,7 @@ namespace Bookstore_App
     /// </summary>
     public partial class CustomerDiaglog : Window
     {
-        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True";
+        private const string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
         String nameC;
         String emailC;
         String usernameC;
@@ -48,7 +48,7 @@ namespace Bookstore_App
 
             // Generate a random customerID
             Random rand = new Random();
-            int customerID = rand.Next(10000, 99999); // Generate a random number between 10000 and 99999
+            int customerID = rand.Next(10000, 9999);
 
             // Insert into the database
             using (SqlConnection connection = new SqlConnection(connectionString))
