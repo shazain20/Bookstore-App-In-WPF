@@ -8,23 +8,41 @@
         Title="bookSideActivity" Height="700" Width="800" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,-3,0,3">
         <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Button_Click"/>
-        <ListView x:Name="bookListView" Margin="42,93,460,93" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1">
+
+        <ListView x:Name="bookListView" Margin="84,129,498,263" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Title of the book" Width="190"/>
                 </GridView>
             </ListView.View>
-            <ListViewItem Content="ListViewItem"/>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Background" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListViewItem Content="No books to show."/>
         </ListView>
-        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="166" Margin="474,112,0,0" VerticalAlignment="Top" Width="220" Source="/flash.jpeg">
+
+        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="196" Margin="474,112,0,0" VerticalAlignment="Top" Width="234" Source="/flash.jpeg">
             <Image.OpacityMask>
                 <ImageBrush Stretch="UniformToFill"/>
             </Image.OpacityMask>
         </Image>
-        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="434,0,0,0" VerticalAlignment="Center" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
-        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="434,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+
+        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Center" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
+        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="460,361,0,0" VerticalAlignment="Top" Height="34" Width="138" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+
         <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,507,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="106,610,0,0" VerticalAlignment="Top" Height="32" Width="136" Background="#FF3762E8" FontSize="20" FontFamily="Candara" FontWeight="Bold" Foreground="#FFE8DCDC" Click="Button_Click_1"/>
+
+        <Button Content="Back" HorizontalAlignment="Left" Margin="118,480,0,0" VerticalAlignment="Top" Height="32" Width="136" Background="#FF3762E8" FontSize="20" FontFamily="Candara" FontWeight="Bold" Foreground="#FFE8DCDC" Click="Button_Click_1"/>
+
         <Button x:Name="delete_Book" Content="Delete Book" HorizontalAlignment="Left" Margin="460,578,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FFF73818" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara"/>
+
+        <Label x:Name="nameLabel_Copy" Content="Books Catalogue" HorizontalAlignment="Left" Margin="275,13,0,0" VerticalAlignment="Top" Height="65" Width="301" FontSize="40" FontFamily="Candara" FontWeight="Bold" Background="#FF7EEACE" Foreground="White"/>
     </Grid>
 </Window>

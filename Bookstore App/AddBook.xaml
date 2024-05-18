@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="AddBook" Height="710" Width="700" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBox x:Name="titleTextBox" HorizontalAlignment="Left" Margin="293,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18"/>
-        <Label x:Name="titleLabel" Content="Title" HorizontalAlignment="Left" Margin="159,91,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="genreTextbox" HorizontalAlignment="Left" Margin="293,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18"/>
-        <Label x:Name="genreLabel" Content="Genre" HorizontalAlignment="Left" Margin="159,159,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="quantityTextbox" HorizontalAlignment="Left" Margin="293,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18" TextChanged="QuantityTextbox_TextChanged"/>
-        <Label x:Name="quantityLabel" Content="Quantity" HorizontalAlignment="Left" Margin="159,229,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <TextBox x:Name="priceTextbox" HorizontalAlignment="Left" Margin="293,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18" TextChanged="PriceTextbox_TextChanged"/>
-        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="159,300,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <Button x:Name="addButton" Content="Add Book" HorizontalAlignment="Left" Margin="221,522,0,0" VerticalAlignment="Top" Height="52" Width="282" FontFamily="Candara" FontSize="24" Background="#FFFA3D13" Foreground="#FFF7EFEF" FontWeight="Bold" Click="addButton_Click"/>
-        <Image HorizontalAlignment="Left" Height="129" Margin="256,-21,0,0" VerticalAlignment="Top" Width="178"/>
-        <Label x:Name="textLabel" Content="Book Details" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" FontSize="42" FontWeight="Bold" FontFamily="Candara" Background="White" Foreground="#FF290EF6"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="221,604,0,0" VerticalAlignment="Top" Height="54" Width="282" FontSize="24" FontFamily="Candara" FontWeight="Bold" Background="#FF1835F3" Foreground="#FFFAEAEA" Click="Button_Click"/>
-        <Label x:Name="priceLabel_Copy" Content="Upload cover" HorizontalAlignment="Left" Margin="159,372,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <Label x:Name="priceLabel_Copy1" Content="Upload PDF" HorizontalAlignment="Left" Margin="159,426,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
-        <Button x:Name="coverButton" Content="Choose file" HorizontalAlignment="Left" Margin="293,366,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="#FF679CE5" Foreground="Black" FontWeight="Bold" Click="coverButton_Click"/>
-        <Label x:Name="coverPageAddedLabel" Content="Cover page added!" HorizontalAlignment="Left" Margin="293,367,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="White" Foreground="Black" FontWeight="Bold" Visibility="Collapsed"/>
-        <Button x:Name="pdfButton" Content="Choose file" HorizontalAlignment="Left" Margin="293,426,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="#FF679CE5" Foreground="Black" FontWeight="Bold" Click="pdfButton_Click"/>
-        <Label x:Name="pdfAddedLabel" Content="PDF added!" HorizontalAlignment="Left" Margin="293,426,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="White" Foreground="Black" FontWeight="Bold" Visibility="Collapsed"/>
-
-    </Grid>
+        Title="AddBook" Height="700" Width="750" Top="5" Left="400">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <TextBox x:Name="titleTextBox" HorizontalAlignment="Left" Margin="293,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18"/>
+            <Label x:Name="titleLabel" Content="Title" HorizontalAlignment="Left" Margin="159,91,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="genreTextbox" HorizontalAlignment="Left" Margin="293,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18"/>
+            <Label x:Name="genreLabel" Content="Genre" HorizontalAlignment="Left" Margin="159,159,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="quantityTextbox" HorizontalAlignment="Left" Margin="293,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18" TextChanged="QuantityTextbox_TextChanged"/>
+            <Label x:Name="quantityLabel" Content="Quantity" HorizontalAlignment="Left" Margin="159,229,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="priceTextbox" HorizontalAlignment="Left" Margin="293,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" Height="38" Background="#FF679CE5" FontFamily="Candara" FontSize="18" TextChanged="PriceTextbox_TextChanged"/>
+            <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="159,300,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <Button x:Name="addButton" Content="Add Book" HorizontalAlignment="Left" Margin="221,620,0,0" VerticalAlignment="Top" Height="52" Width="282" FontFamily="Candara" FontSize="24" Background="#FFFA3D13" Foreground="#FFF7EFEF" FontWeight="Bold" Click="addButton_Click"/>
+            <Image HorizontalAlignment="Left" Height="129" Margin="256,-21,0,0" VerticalAlignment="Top" Width="178"/>
+            <Label x:Name="textLabel" Content="Book Details" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" FontSize="42" FontWeight="Bold" FontFamily="Candara" Background="White" Foreground="#FF290EF6"/>
+            <Button Content="Back" HorizontalAlignment="Left" Margin="221,702,0,0" VerticalAlignment="Top" Height="54" Width="282" FontSize="24" FontFamily="Candara" FontWeight="Bold" Background="#FF1835F3" Foreground="#FFFAEAEA" Click="Button_Click"/>
+            <Label x:Name="priceLabel_Copy" Content="Upload cover" HorizontalAlignment="Left" Margin="159,476,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <Label x:Name="priceLabel_Copy1" Content="Upload PDF" HorizontalAlignment="Left" Margin="159,530,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <Button x:Name="coverButton" Content="Choose file" HorizontalAlignment="Left" Margin="293,470,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="#FF679CE5" Foreground="Black" FontWeight="Bold" Click="coverButton_Click"/>
+            <Label x:Name="coverPageAddedLabel" Content="Cover page added!" HorizontalAlignment="Left" Margin="293,469,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="White" Foreground="Black" FontWeight="Bold" Visibility="Collapsed"/>
+            <Button x:Name="pdfButton" Content="Choose file" HorizontalAlignment="Left" Margin="293,530,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="#FF679CE5" Foreground="Black" FontWeight="Bold" Click="pdfButton_Click"/>
+            <Label x:Name="pdfAddedLabel" Content="PDF added!" HorizontalAlignment="Left" Margin="293,530,0,0" VerticalAlignment="Top" Height="38" Width="256" FontFamily="Candara" FontSize="24" Background="White" Foreground="Black" FontWeight="Bold" Visibility="Collapsed"/>
+            <Label x:Name="priceLabel_Copy2" Content="Description" HorizontalAlignment="Left" Margin="159,386,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="18" FontWeight="Bold"/>
+            <TextBox x:Name="descriptionTextbox" HorizontalAlignment="Left" Margin="293,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="381" Height="84" Background="#FF679CE5" FontFamily="Candara" FontSize="18"/>
+        </Grid>
+    </ScrollViewer>
 </Window>

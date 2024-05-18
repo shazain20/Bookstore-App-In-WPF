@@ -91,7 +91,7 @@ namespace Bookstore_App
                         if (result != null)
                         {
                             // Display the price in the priceLabel
-                            priceLabel.Content = "Price: $" + result.ToString();
+                            priceLabel.Content = "Price:\t$" + result.ToString();
                         }
                         else
                         {
@@ -105,7 +105,7 @@ namespace Bookstore_App
                 }
 
                 // Display the selected title in the titleLabel
-                nameLabel.Content = "Selected Book Title: " + selectedTitle;
+                nameLabel.Content = "Title:\t" + selectedTitle;
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
