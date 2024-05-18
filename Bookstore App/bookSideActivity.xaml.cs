@@ -22,9 +22,48 @@ namespace Bookstore_App
             InitializeComponent();
             Update_Book.IsEnabled = false;
             deleteButton.IsEnabled = false;
-            FetchBookTitles(); // Call method to fetch book titles when the window is initialized
+            RefreshAndSort(); // Call method to fetch book titles when the window is initialized
         }
 
+        private void RefreshAndSort()
+        {
+            try
+            {
+                List<string> bookTitles = new List<string>();
+
+                // Connect to the database and fetch book titles
+                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                {
+                    connection.Open();
+                    string query = "SELECT Title FROM books";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Add fetched book titles to the list
+                    while (reader.Read())
+                    {
+                        string title = reader.GetString(0);
+                        bookTitles.Add(title);
+                    }
+
+                    reader.Close();
+                }
+
+                // Sort the book titles in ascending order
+                bookTitles.Sort();
+
+                // Clear existing items in the ListView and add sorted book titles
+                bookListView.Items.Clear();
+                foreach (string title in bookTitles)
+                {
+                    bookListView.Items.Add(title);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error refreshing book titles: " + ex.Message);
+            }
+        }
         private void FetchBookTitles()
         {
             try
@@ -78,37 +117,66 @@ namespace Bookstore_App
                 // Get the selected book title
                 string selectedTitle = bookListView.SelectedItem.ToString();
 
-                // Connect to the database and fetch the price of the selected book
+                // Initialize variables to store book details
+                int price = 0;
+                string imagePath = string.Empty;
+
+                // Connect to the database and fetch the details of the selected book
                 using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     try
                     {
                         connection.Open();
-                        string query = "SELECT Price FROM books WHERE Title = @Title";
+                        string query = "SELECT Price, imagePath FROM books WHERE Title = @Title";
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@Title", selectedTitle);
-                        object result = command.ExecuteScalar();
 
-                        if (result != null)
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
                         {
-                            // Display the price in the priceLabel
-                            priceLabel.Content = "Price:\t$" + result.ToString();
+                            // Fetch price as integer
+                            price = reader.GetInt32(0);
+                            // Fetch image path
+                            imagePath = reader.GetString(1);
                         }
-                        else
-                        {
-                            priceLabel.Content = "Price: N/A";
-                        }
+
+                        reader.Close();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error fetching book price: " + ex.Message);
+                        MessageBox.Show("Error fetching book details: " + ex.Message);
                     }
                 }
 
+                // Display the price in the priceLabel
+                priceLabel.Content = $"Price:\t${price}";
+
                 // Display the selected title in the titleLabel
-                nameLabel.Content = "Title:\t" + selectedTitle;
+                nameLabel.Content = $"Title:\t{selectedTitle}";
+
+                // Set the image source if an image path is available
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    try
+                    {
+                        Uri imageUri = new Uri(imagePath, UriKind.Absolute);
+                        booksImages.Source = new BitmapImage(imageUri);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error setting image source: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    // Clear the image source if no image path is found
+                    booksImages.Source = null;
+                }
             }
         }
+
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -145,7 +213,7 @@ namespace Bookstore_App
                             bookdetails.ID = Convert.ToInt32(reader["BookId"]);
                             bookdetails.Title = reader["Title"].ToString();
                             bookdetails.Genre = reader["Genre"].ToString();
-                            bookdetails.Price = Convert.ToDecimal(reader["Price"]);
+                            bookdetails.Price = Convert.ToInt32(reader["Price"]);
                             bookdetails.Quantity = Convert.ToInt32(reader["Quantity"]);
                             bookdetails.Description = reader["Description"].ToString();
                         }
@@ -197,19 +265,13 @@ namespace Bookstore_App
                     }
                 }
 
-                // Reopen the bookSideActivity window using Dispatcher to ensure it happens after the current window is closed
-                Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-                    bookSideActivity newBookSideActivity = new bookSideActivity();
-                    newBookSideActivity.Show();
-                });
-
-                this.Close();
+                
             }
             else
             {
                 MessageBox.Show("Please select a book to delete.");
             }
+            RefreshAndSort();
         }
     }
 }

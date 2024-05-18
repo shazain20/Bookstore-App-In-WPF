@@ -9,7 +9,7 @@
     <Grid Margin="0,-3,0,3">
         <Button Content="Add Book" HorizontalAlignment="Left" Margin="460,432,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Button_Click"/>
 
-        <ListView x:Name="bookListView" Margin="84,129,498,263" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1">
+        <ListView x:Name="bookListView" Margin="84,129,498,263" Background="#FFA5D6D1" SelectionChanged="ListView_SelectionChanged_1" FontSize="14">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title of the book" Width="190"/>
@@ -28,14 +28,10 @@
             <ListViewItem Content="No books to show."/>
         </ListView>
 
-        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="196" Margin="474,112,0,0" VerticalAlignment="Top" Width="234" Source="/flash.jpeg">
-            <Image.OpacityMask>
-                <ImageBrush Stretch="UniformToFill"/>
-            </Image.OpacityMask>
-        </Image>
+        <Image x:Name="booksImages" HorizontalAlignment="Left" Height="205" Margin="474,112,0,0" VerticalAlignment="Top" Width="249" Source="/flash.jpeg"/>
 
-        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Center" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
-        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="460,361,0,0" VerticalAlignment="Top" Height="34" Width="308" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
+        <Label x:Name="nameLabel" Content="Name" HorizontalAlignment="Left" Margin="460,337,0,0" VerticalAlignment="Top" Height="38" Width="308" FontSize="20" FontFamily="Candara" FontWeight="Bold"/>
+        <Label x:Name="priceLabel" Content="Price" HorizontalAlignment="Left" Margin="460,375,0,0" VerticalAlignment="Top" Height="34" Width="308" FontWeight="Bold" FontFamily="Candara" FontSize="20"/>
 
         <Button x:Name="Update_Book" Content="Update Book" HorizontalAlignment="Left" Margin="460,507,0,0" VerticalAlignment="Top" Height="47" Width="248" FontSize="26" Background="#FF20BFE2" Foreground="#FFEBDCDC" FontWeight="Bold" FontFamily="Candara" Click="Update_Book_Click"/>
 
