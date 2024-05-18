@@ -27,12 +27,12 @@
             <Button Content="View Cart" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Center" FontSize="24" Background="#FFB53636"/>
             <Label Content="Title" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" FontSize="20"/>
             <Label Content="Price" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Title" HorizontalAlignment="Left" Margin="734,427,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Price" HorizontalAlignment="Left" Margin="734,464,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Title" HorizontalAlignment="Left" Margin="369,417,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Price" HorizontalAlignment="Left" Margin="369,464,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Title" HorizontalAlignment="Left" Margin="734,79,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Price" HorizontalAlignment="Left" Margin="734,121,0,0" VerticalAlignment="Top" FontSize="20"/>
         </Grid>
     </ScrollViewer>
 </Window>

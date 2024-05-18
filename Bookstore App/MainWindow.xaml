@@ -21,6 +21,7 @@
             <RadioButton x:Name="adminRadioButton" Content="Admin" HorizontalAlignment="Left" Margin="162,309,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Background="White"/>
             <RadioButton x:Name="userRadioButton" Content="Customer" HorizontalAlignment="Left" Margin="253,309,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
             <PasswordBox x:Name="passwordPasswordBox" HorizontalAlignment="Left" Margin="161,244,0,0" VerticalAlignment="Top" Width="167" Height="26"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="207,380,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Label Content="Already Have An Account? Sign In!" HorizontalAlignment="Left" Margin="394,68,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="435,137,0,0" VerticalAlignment="Top" Width="105" FontSize="18"/>
