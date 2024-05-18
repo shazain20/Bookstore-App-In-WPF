@@ -23,5 +23,10 @@ namespace Bookstore_App
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

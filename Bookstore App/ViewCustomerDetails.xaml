@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
         Title="ViewCustomerDetails" Height="450" Width="800">
-    <Grid>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,191"/>
-
+    <Grid Background="#FF41CA69">
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,199" />
+        <Button Content="Back" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636" Click="Button_Click_1" RenderTransformOrigin="0.36,2.926"/>
     </Grid>
 </Window>
