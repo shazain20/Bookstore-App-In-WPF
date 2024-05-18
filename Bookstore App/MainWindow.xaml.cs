@@ -6,8 +6,10 @@ namespace Bookstore_App
 {
     public partial class MainWindow : Window
     {
-        private const string ConnectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-
+        private const string ConnectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        string name;
+        string email;
+        string usernamee;
         public MainWindow()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace Bookstore_App
             string password = passwordPasswordBox.Password;
             bool isAdminChecked = adminRadioButton.IsChecked ?? false;
             bool isUserChecked = userRadioButton.IsChecked ?? false;
+            string role = isAdminChecked ? "Admin" : isUserChecked ? "Customer" : "";
 
             // Validate input
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) ||
@@ -43,21 +46,18 @@ namespace Bookstore_App
                 return;
             }
 
-            // Determine the table name based on radio button selection
-            string tableName = isAdminChecked ? "admins" : "customers";
-
-            // Generate a random 4-digit integer
+            // Generate a random 4-digit integer for userID
             Random rand = new Random();
-            int randomValue = rand.Next(1000, 9999);
+            int userID = rand.Next(1000, 9999);
 
             // Check if username already exists
-            if (UsernameExists(username, tableName))
+            if (UsernameExists(username))
             {
                 MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Insert data into the appropriate table
+            // Insert data into the users table
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -65,18 +65,18 @@ namespace Bookstore_App
                     connection.Open();
 
                     // Prepare SQL statement
-                    string sql = $"INSERT INTO {tableName} (name, email, username, password, ";
-                    sql += isAdminChecked ? "adminID) " : "customerID) ";
-                    sql += "VALUES (@Name, @Email, @Username, @Password, @ID)";
+                    string sql = "INSERT INTO users (userID, name, email, username, password, role) " +
+                                 "VALUES (@UserID, @Name, @Email, @Username, @Password, @Role)";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         // Add parameters to prevent SQL injection
+                        command.Parameters.AddWithValue("@UserID", userID);
                         command.Parameters.AddWithValue("@Name", name);
                         command.Parameters.AddWithValue("@Email", email);
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
-                        command.Parameters.AddWithValue("@ID", randomValue);
+                        command.Parameters.AddWithValue("@Role", role);
 
                         // Execute SQL statement
                         int rowsAffected = command.ExecuteNonQuery();
@@ -97,6 +97,7 @@ namespace Bookstore_App
             }
         }
 
+
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = loginUsernameTextBox.Text;
@@ -110,8 +111,6 @@ namespace Bookstore_App
                 return;
             }
 
-            string tableName = isAdminChecked ? "admins" : "customers";
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -119,33 +118,58 @@ namespace Bookstore_App
                     connection.Open();
 
                     // Prepare SQL statement
-                    string sql = $"SELECT COUNT(*) FROM {tableName} WHERE username = @Username AND password = @Password";
+                    string sql = "SELECT COUNT(*), role, name, email FROM users WHERE username = @Username AND password = @Password GROUP BY role, name, email";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
 
-                        int count = (int)command.ExecuteScalar();
-
-                        if (count > 0 && isAdminChecked)
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            MessageBox.Show("Login successful!");
+                            if (reader.Read())
+                            {
+                                int count = reader.GetInt32(0);
+                                string role = reader.GetString(1).Trim(); // Ensure to trim any whitespace characters
+                                string name = reader.IsDBNull(2) ? string.Empty : reader.GetString(2).Trim();
+                                string email = reader.IsDBNull(3) ? string.Empty : reader.GetString(3).Trim();
 
-                            // Open AdminMenu window
-                            AdminMenu adminMenu = new AdminMenu();
-                            adminMenu.Show();
+                                if (count > 0)
+                                {
+                                    if (role == "Admin" && isAdminChecked)
+                                    {
+                                        MessageBox.Show("Login successful!");
 
-                            // Close MainWindow
-                            this.Close();
-                        }
-                        else if (count > 0 && isCustomerChecked)
-                        {
-                            // Handle the case for regular user login here if needed
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        // Open AdminMenu window
+                                        AdminMenu adminMenu = new AdminMenu();
+                                        adminMenu.Show();
+                                        // Close MainWindow
+                                        this.Close();
+                                    }
+                                    else if (role == "Customer" && isCustomerChecked)
+                                    {
+                                        MessageBox.Show("Login successful!");
+
+                                        // Open CustomerDiaglog window
+                                        CustomerDiaglog customerDiaglog = new CustomerDiaglog(name, email, username);
+                                        customerDiaglog.Show();
+                                        // Close MainWindow
+                                        this.Close();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Role mismatch. Please select the correct role.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                 }
@@ -155,38 +179,42 @@ namespace Bookstore_App
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        // Helper method to validate email address
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-
-
-
-        private bool UsernameExists(string username, string tableName)
+        // Helper method to check if username already exists
+        private bool UsernameExists(string username)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    string sql = $"SELECT 1 FROM {tableName} WHERE username = @Username";
+                    string sql = "SELECT COUNT(*) FROM users WHERE username = @Username";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            return reader.HasRows;
-                        }
+                        int count = (int)command.ExecuteScalar();
+                        return count > 0;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while checking username: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return true; // Assume username exists to prevent signup due to unknown error
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return true; // Assume username exists if there's an error checking
             }
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            return email.Contains("@") && email.Contains(".");
         }
     }
 }

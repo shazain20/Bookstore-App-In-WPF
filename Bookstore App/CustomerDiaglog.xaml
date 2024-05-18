@@ -1,0 +1,28 @@
+﻿<Window x:Class="Bookstore_App.CustomerDiaglog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bookstore_App"
+        mc:Ignorable="d"
+        Title="CustomerDiaglog" Height="500" Width="400">
+    <Grid>
+        <Label x:Name="CityLabel" Content="City" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="24" FontWeight="Bold"/>
+        <Label x:Name="addressLabel" Content="Address" HorizontalAlignment="Left" Margin="45,135,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Candara" FontWeight="Bold"/>
+        <Label x:Name="GenderLabel" Content="Gender" HorizontalAlignment="Left" Margin="45,214,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Candara" FontWeight="Bold"/>
+        <Grid RenderTransformOrigin="0.399,0.576">
+            <Label x:Name="CityLabel1" Content="City" HorizontalAlignment="Left" Margin="45,53,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="24" FontWeight="Bold"/>
+            <Label x:Name="addressLabel1" Content="Address" HorizontalAlignment="Left" Margin="45,135,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Candara" FontWeight="Bold"/>
+            <Label x:Name="GenderLabel1" Content="Gender" HorizontalAlignment="Left" Margin="45,214,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Candara" FontWeight="Bold"/>
+            <TextBox x:Name="addressTextBox" HorizontalAlignment="Left" Margin="171,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Height="39" FontSize="20" FontWeight="Bold" Background="#FFF3E8E8"/>
+            <RadioButton x:Name="maleRadio" Content="Male" GroupName="Gender" HorizontalAlignment="Left" Margin="200,226,0,0" VerticalAlignment="Top" Height="16" Width="96" FontSize="16" FontWeight="Bold"/>
+            <RadioButton x:Name="femaleRadio" Content="Female" GroupName="Gender" HorizontalAlignment="Left" Margin="200,262,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+            <Button x:Name="registerBtn" Content="Register !" HorizontalAlignment="Center" Margin="0,326,0,0" VerticalAlignment="Top" Height="31" Width="134" Background="#FF1A23B8" Foreground="#FFF7F6F6" FontWeight="Bold" FontSize="16" Click="registerBtn_Click"/>
+            <Label x:Name="contactLabel" Content="Contact" HorizontalAlignment="Left" Margin="45,91,0,0" VerticalAlignment="Top" FontFamily="Candara" FontSize="24" FontWeight="Bold"/>
+
+        </Grid>
+        <TextBox x:Name="cityTextBox" HorizontalAlignment="Left" Margin="171,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" Height="39" Background="#FFFDF3F3"/>
+        <TextBox x:Name="contactTexbox" HorizontalAlignment="Left" Margin="171,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" Height="35" Background="#FFFDF3F3"/>
+
+    </Grid>
+</Window>
