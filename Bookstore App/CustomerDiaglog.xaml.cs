@@ -56,7 +56,7 @@ namespace Bookstore_App
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO customer (customerID, name, email, username, city, contact, address, gender) VALUES (@CustomerID, @Name, @Email, @Username, @City, @Contact, @Address, @Gender)";
+                    string query = "INSERT INTO customers (customerID, name, email, username, city, contact, address, gender) VALUES (@CustomerID, @Name, @Email, @Username, @City, @Contact, @Address, @Gender)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@CustomerID", customerID);
                     command.Parameters.AddWithValue("@Name", nameC);  
