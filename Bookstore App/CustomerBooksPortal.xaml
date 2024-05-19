@@ -6,33 +6,38 @@
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
         Title="CustomerBooksPortal" Height="640" Width="900">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <Grid Margin="0,0,726,0" Background="#FF41CA69">
-                <Button Content="View Order" HorizontalAlignment="Center" Margin="0,357,0,0" VerticalAlignment="Top" FontSize="24" Background="#FFB53636"/>
-                <Button Content="Logout" HorizontalAlignment="Center" Margin="0,419,0,0" VerticalAlignment="Top" FontSize="24" Background="#FFB53636"/>
-            </Grid>
-            <Image HorizontalAlignment="Left" Height="135" Margin="216,39,0,0" VerticalAlignment="Top" Width="114"/>
-            <Image HorizontalAlignment="Left" Height="135" Margin="216,365,0,0" VerticalAlignment="Top" Width="114"/>
-            <Image HorizontalAlignment="Left" Height="135" Margin="601,39,0,0" VerticalAlignment="Top" Width="113"/>
-            <Button Content="View details" HorizontalAlignment="Left" Margin="216,207,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="View details" HorizontalAlignment="Left" Margin="601,537,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="View details" HorizontalAlignment="Left" Margin="217,537,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="View details" HorizontalAlignment="Left" Margin="600,207,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="Add To Cart" HorizontalAlignment="Left" Margin="217,243,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="Add To Cart" HorizontalAlignment="Left" Margin="600,573,0,0" VerticalAlignment="Top" FontSize="20" Width="110" Background="#FFB53636"/>
-            <Button Content="Add To Cart" HorizontalAlignment="Left" Margin="218,573,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Button Content="Add To Cart" HorizontalAlignment="Left" Margin="601,243,0,0" VerticalAlignment="Top" FontSize="20" Background="#FFB53636"/>
-            <Image HorizontalAlignment="Left" Height="141" Margin="600,365,0,0" VerticalAlignment="Top" Width="117"/>
-            <Button Content="View Cart" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Center" FontSize="24" Background="#FFB53636"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="734,427,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="734,464,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="369,417,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="369,464,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Title" HorizontalAlignment="Left" Margin="734,79,0,0" VerticalAlignment="Top" FontSize="20"/>
-            <Label Content="Price" HorizontalAlignment="Left" Margin="734,121,0,0" VerticalAlignment="Top" FontSize="20"/>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <Button Content="Logout" Width="100" Margin="10" Click="LogoutButton_Click"/>
+                <Button Content="Show Cart" Width="100" Margin="10" Click="ShowCartButton_Click"/>
+                <Button Content="Show Details" Width="100" Margin="10" Click="ShowDetailsButton_Click"/>
+            </StackPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <ItemsControl Name="BooksItemsControl" ItemsSource="{Binding Books}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding Picture}" Width="100" Height="150"/>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,5,0,0"/>
+                                    <TextBlock Text="{Binding Price, StringFormat='{}{0:C}'}" Margin="0,5,0,10"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Add to Cart" Margin="5" Width="80" Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Details" Margin="5" Width="80" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+
 </Window>
