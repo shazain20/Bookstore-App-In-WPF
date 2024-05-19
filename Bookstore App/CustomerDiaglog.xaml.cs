@@ -48,7 +48,7 @@ namespace Bookstore_App
 
             // Generate a random customerID
             Random rand = new Random();
-            int customerID = rand.Next(10000, 9999);
+            int customerID = rand.Next(1000, 9999);
 
             // Insert into the database
             using (SqlConnection connection = new SqlConnection(connectionString))
