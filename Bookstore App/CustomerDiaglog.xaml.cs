@@ -9,9 +9,6 @@ using System.Data.SqlClient;
 
 namespace Bookstore_App
 {
-    /// <summary>
-    /// Interaction logic for CustomerDiaglog.xaml
-    /// </summary>
     public partial class CustomerDiaglog : Window
     {
         private const string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
@@ -32,13 +29,13 @@ namespace Bookstore_App
         }
 
         private void registerBtn_Click(object sender, RoutedEventArgs e)
-        {// Retrieve data from input fields
+        {
             string city = cityTextBox.Text;
             string contact = contactTexbox.Text;
             string address = addressTextBox.Text;
             string gender = maleRadio.IsChecked == true ? "Male" : "Female";
 
-            // Validate inputs
+            
             if (string.IsNullOrEmpty(city) || string.IsNullOrEmpty(contact) || string.IsNullOrEmpty(address) ||
                 string.IsNullOrEmpty(gender))
             {
@@ -46,11 +43,11 @@ namespace Bookstore_App
                 return;
             }
 
-            // Generate a random customerID
+           
             Random rand = new Random();
             int customerID = rand.Next(1000, 9999);
 
-            // Insert into the database
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
